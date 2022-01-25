@@ -1,0 +1,27 @@
+{
+  "bindings": [
+    {
+      "authLevel": "anonymous",
+      "type": "httpTrigger",
+      "direction": "in",
+      "name": "req",
+      "methods": [
+        "post"
+      ],
+      "route": "images"
+    },
+    {
+      "type": "http",
+      "direction": "out",
+      "name": "$return"
+    },
+    {
+      "type": "blob",
+      "direction": "out",
+      "name": "blob",
+      "path": "images",
+      "connection": "pergusimagestore_STORAGE"
+    }
+  ],
+  "scriptFile": "../dist/func-http-post-images/index.js"
+}

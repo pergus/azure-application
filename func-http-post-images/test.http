@@ -1,0 +1,4 @@
+POST http://localhost:7071/images
+Content-Type: application/octet-stream
+
+< flower.jpg
