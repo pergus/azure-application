@@ -26,6 +26,19 @@
       "command": "npm prune --production",
       "dependsOn": "npm build (functions)",
       "problemMatcher": []
+    },
+    {
+      "type": "typescript",
+      "tsconfig": "tsconfig.json",
+      "option": "watch",
+      "problemMatcher": [
+        "$tsc-watch"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "label": "tsc: watch - tsconfig.json"
     }
   ]
 }

@@ -9,15 +9,32 @@ interface HttpResponse {
 }
 
 const httpTrigger: AzureFunction = async function (context: Context, req: HttpRequest): Promise<HttpResponse> {
-
-    const client = BlobServiceClient.fromConnectionString(process.env.pergusimagestore_STORAGE).getContainerClient("images")
+    
     const id = uuidv4()
-    const blob = client.getBlockBlobClient(id);
-    blob.upload(req.body, Buffer.byteLength(req.body))
+    let status = 200
+    let body:object = null
+    let contentType = "application/json"
+
+    if (req.headers["content-type"] == "application/octet-stream"){
+
+        // Add the image to the image container in the Blob
+        const client = BlobServiceClient.fromConnectionString(process.env.pergusimagestore_STORAGE).getContainerClient("images")    
+        const blob = client.getBlockBlobClient(id);
+        await blob.upload(req.body, Buffer.byteLength(req.body))
+        body = { "id": id, "uri": "https://pergusimagestore.blob.core.windows.net/images/" + id  + ".jpg"}
+
+        // Add the body to the images container in cosmosDB
+        context.bindings.cosmos = body
+
+    }else {
+            status = 400,
+            body = { response: req.headers["content-type"] + " is not a valid Content-Type" }
+    }
 
     return {
-        status: 200,
-        body: "https://pergusimagestore.blob.core.windows.net/images/" + id
+        status: status,
+        headers: { "content-type": contentType },
+        body: body
     }
     
 };
