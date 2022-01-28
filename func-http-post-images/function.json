@@ -16,13 +16,6 @@
       "name": "$return"
     },
     {
-      "type": "blob",
-      "direction": "out",
-      "name": "blob",
-      "path": "images",
-      "connection": "pergusimagestore_STORAGE"
-    },
-    {
       "type": "cosmosDB",
       "direction": "out",
       "name": "cosmos",
