@@ -1,4 +1,5 @@
 import { AzureFunction, Context, HttpRequest } from "@azure/functions"
+import { isUint8ClampedArray } from "util/types";
 
 interface HttpResponse {
     status: number
@@ -17,7 +18,11 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
         status = 500
     }else {
         for (var i = 0; i < items.length; i++){
-            body[i] = { "id": items[i].id, "uri": items[i].uri }
+            if (items[i].thumbnail === undefined){
+                body[i] = { "id": items[i].id, "uri": items[i].uri }
+            }else {
+                body[i] = { "id": items[i].id, "uri": items[i].uri, "thumbnail": items[i].thumbnail }
+            }
         }
     }
 

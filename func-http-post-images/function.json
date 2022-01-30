@@ -22,6 +22,14 @@
       "databaseName": "azure101",
       "collectionName": "images",
       "connectionStringSetting": "perguscosmos_DOCUMENTDB"
+    },
+    {
+      "type": "serviceBus",
+      "direction": "out",
+      "connection": "pergus_SERVICEBUS",
+      "name": "busOut",
+      "queueName": "thumbnailqueue",
+      "dataType": "string"
     }
   ],
   "scriptFile": "../dist/func-http-post-images/index.js"

@@ -1,0 +1,54 @@
+{
+  "retry": {
+    "strategy": "fixedDelay",
+    "delayInterval": "00:00:03",
+    "maxRetryCount": 3
+  },
+  "bindings": [
+    {
+      "name": "busMessage",
+      "type": "serviceBusTrigger",
+      "direction": "in",
+      "queueName": "thumbnailqueue",
+      "connection": "pergus_SERVICEBUS"
+    },
+    {
+      "type": "blob",
+      "direction": "in",
+      "dataType": "binary",
+      "name": "image",
+      "path": "images/{id}.jpg",
+      "connection": "pergusimagestore_STORAGE"
+    },
+    {
+      "type": "blob",
+      "direction": "out",
+      "dataType": "binary",
+      "name": "thumbnail",
+      "path": "thumbnails/{id}.jpg",
+      "connection": "pergusimagestore_STORAGE"
+    },
+    {
+      "type": "cosmosDB",
+      "direction": "in",
+      "name": "doc",
+      "databaseName": "azure101",
+      "collectionName": "images",
+      "connectionStringSetting": "perguscosmos_DOCUMENTDB",
+      "id": "{id}",
+      "partitionKey": "{id}"
+    },
+    {
+      "type": "cosmosDB",
+      "direction": "out",
+      "name": "newDoc",
+      "databaseName": "azure101",
+      "collectionName": "images",
+      "createIfNotExists": false,
+      "connectionStringSetting": "perguscosmos_DOCUMENTDB",
+      "id": "{id}",
+      "partitionKey": "{id}"
+    }
+  ],
+  "scriptFile": "../dist/func-servicebus-thumbnail/index.js"
+}

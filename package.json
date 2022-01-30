@@ -11,7 +11,9 @@
   },
   "dependencies": {
     "@azure/cosmos": "^3.15.1",
-    "@azure/storage-blob": "^12.8.0"
+    "@azure/storage-blob": "^12.8.0",
+    "@types/node": "^17.0.13",
+    "resize-img": "^2.0.0"
   },
   "devDependencies": {
     "@azure/functions": "^1.2.3",
