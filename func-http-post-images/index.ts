@@ -11,7 +11,7 @@ interface HttpResponse {
 const httpTrigger: AzureFunction = async function (context: Context, req: HttpRequest): Promise<HttpResponse> {
     
     const id = uuidv4()
-    let status = 200
+    let status = 201
     let body:object = null
     let contentType = "application/json"
 
