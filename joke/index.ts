@@ -10,7 +10,7 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
     context.log.info('HTTP trigger function processed a request.');
     
     const body = {
-        text: "No Jokes Today"
+        text: "No Jokes Today..."
     }
 
     context.res = {

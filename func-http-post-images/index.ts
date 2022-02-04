@@ -31,8 +31,9 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
         context.bindings.busOut = body
 
     }else {
-            status = 400,
+            status = 500,
             body = { response: req.headers["content-type"] + " is not a valid Content-Type" }
+            context.log.error("Internal server error when storing image")
     }
 
 
