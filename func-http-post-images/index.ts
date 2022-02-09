@@ -22,7 +22,8 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
         const blob = client.getBlockBlobClient(id + ".jpg");
         await blob.upload(req.body, Buffer.byteLength(req.body))
 
-        body = { "id": id, "uri": "https://pergusimagestore.blob.core.windows.net/images/" + id  + ".jpg"}
+        //body = { "id": id, "uri": "https://pergusimagestore.blob.core.windows.net/images/" + id  + ".jpg"}
+        body = { "id": id, "uri": "https://pergusxqodmsj6q5ckm.blob.core.windows.net/images/" + id  + ".jpg"}
 
         // Add the body to the images container in cosmosDB
         context.bindings.cosmos = body

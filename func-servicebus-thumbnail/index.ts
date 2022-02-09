@@ -24,7 +24,8 @@ const serviceBusQueueTrigger: AzureFunction = async function(context: Context, b
     context.bindings.thumbnail = thumbnail
 
     // Add the thumbnail uri to the document and store it in CosmosDB
-    context.bindings.newDoc = { ...context.bindings.doc, thumbnail: "https://pergusimagestore.blob.core.windows.net/thumbnails/" + context.bindings.doc.id  + ".jpg" }
+    //context.bindings.newDoc = { ...context.bindings.doc, thumbnail: "https://pergusimagestore.blob.core.windows.net/thumbnails/" + context.bindings.doc.id  + ".jpg" }
+    context.bindings.newDoc = { ...context.bindings.doc, thumbnail: "https://pergusxqodmsj6q5ckm.blob.core.windows.net/thumbnails/" + context.bindings.doc.id  + ".jpg" }
 };
 
 export default serviceBusQueueTrigger;
