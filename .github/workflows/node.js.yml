@@ -13,7 +13,7 @@ on:
 env:
   AZURE_FUNCTIONAPP_NAME: funcapp-xqodmsj6q5ckm      # set this to your application's name
   AZURE_FUNCTIONAPP_PACKAGE_PATH: '.'      # set this to the path to your web app project, defaults to the repository root
-  NODE_VERSION: '12.x'
+  NODE_VERSION: '14.x'
 
 jobs:
   build:
@@ -31,18 +31,12 @@ jobs:
     - name: 'Build project'
       shell: bash
       run: |
-          az --version
           npm install
           npm run build
-    - name: 'Login to AZ'
-      uses: azure/login@v1
-      with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
     - name: 'Run Azure Functions Action'
       uses: Azure/functions-action@v1
       id: fa
       with:
         app-name: ${{ env.AZURE_FUNCTIONAPP_NAME }}
         package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
-        publish-profile: ${{ secrets.AZURE_FUNCTIONAPP_PUBLISH_PROFILE }}
-
+        publish-profile: ${{ secrets.AZURE_FUNCTIONAPP_PUBLISH_PROFILE }}  
