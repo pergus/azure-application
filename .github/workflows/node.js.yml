@@ -31,6 +31,7 @@ jobs:
     - name: 'Build project'
       shell: bash
       run: |
+          az --version
           npm install
           npm run build
     - name: 'Login to AZ'
